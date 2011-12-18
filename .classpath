@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/rhino1_7R2/js.jar"/>
+	<classpathentry kind="lib" path="libs/javadocking1.4.1/javadocking.jar"/>
+	<classpathentry kind="lib" path="libs/commons-cli-1.2.0/commons-cli-1.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
