@@ -188,8 +188,8 @@ MTurk.prototype.createHITRaw = function(params) {
 	if (!params.maxAssignments)
 		params.maxAssignments = 1
 
-	if (!params.autoApprovalDelayInSeconds)
-		params.autoApprovalDelayInSeconds = null
+//	if (!params.autoApprovalDelayInSeconds)
+//		params.autoApprovalDelayInSeconds = null
 
 	if (javaTurKit.safety) {
 		if (params.hitTypeId) {
@@ -199,14 +199,14 @@ MTurk.prototype.createHITRaw = function(params) {
 		}
 	}
 
-	if (!params.requesterAnnotation)
-		params.requesterAnnotation = null
+//	if (!params.requesterAnnotation)
+//		params.requesterAnnotation = null
 
-	if (!params.responseGroup)
-		params.responseGroup = null
+//	if (!params.responseGroup)
+//		params.responseGroup = null
 
-	if (!params.qualificationRequirements)
-		params.qualificationRequirements = null
+//	if (!params.qualificationRequirements)
+//		params.qualificationRequirements = null
 		
 	var XMLstring = XMLtags(
 			"Title", params.title,
@@ -214,20 +214,30 @@ MTurk.prototype.createHITRaw = function(params) {
 			"Question", params.question,
 			"AssignmentDurationInSeconds", params.assignmentDurationInSeconds,
 			"LifetimeInSeconds", params.lifetimeInSeconds,
-			"Keywords", params.keywords,
-			"MaxAssignments", params.maxAssignments,
-			"AutoApprovalDelayInSeconds", params.autoApprovalDelayInSeconds,
-			"RequesterAnnotation", params.requesterAnnotation	
+			"MaxAssignments", params.maxAssignments
+//			"Keywords", params.keywords,
+//			"AutoApprovalDelayInSeconds", params.autoApprovalDelayInSeconds,
+//			"RequesterAnnotation", params.requesterAnnotation
 	)
 	XMLstring = XMLstring + XMLstringFromObjs({"Amount": ""+params.reward, "CurrencyCode":"USD"},"Reward")
 	
+	if (params.keywords)
+        XMLstring = XMLstring + XMLstringFromObjs(params.keywords,"Keywords")
+
+	if (params.AutoApprovalDelayInSeconds)
+        XMLstring = XMLstring + XMLstringFromObjs(params.AutoApprovalDelayInSeconds,"AutoApprovalDelayInSeconds")
+
+	if (params.requesterAnnotation)
+        XMLstring = XMLstring + XMLstringFromObjs(params.requesterAnnotation,"RequesterAnnotation")
+
 	//add qualification requirements
 	
 	XMLstring = XMLstring + (params.qualificationRequirements ? XMLstringFromObjs(params.qualificationRequirements, "QualificationRequirement") : "")
 	
-	var x = new XML(javaTurKit.soapRequest("CreateHIT", XMLstring))
+	var res = javaTurKit.soapRequest("CreateHIT", XMLstring)
+	var x = new XML(res)
 	
-	if ('' + x..Request.IsValid != "True") throw "Failed to create HIT: " + XMLstring
+	if ('' + x..Request.IsValid != "True") throw "Failed to create HIT: \n" + XMLstring + "\nResponse:" + res
 	var hit = x..HIT
 
 	var hitId = this.tryToGetHITId(hit)
