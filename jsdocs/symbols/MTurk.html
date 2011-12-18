@@ -1,0 +1,1657 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - MTurk</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header" style="width:100%;text-align:right"><h3><i>TurKit JavaScript API v0.2.5</i></h3></div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/Array.html">Array</a></li>
+	
+	<li><a href="../symbols/Database.html">Database</a></li>
+	
+	<li><a href="../symbols/MTurk.html">MTurk</a></li>
+	
+	<li><a href="../symbols/S3.html">S3</a></li>
+	
+	<li><a href="../symbols/String.html">String</a></li>
+	
+	<li><a href="../symbols/TraceManager.html">TraceManager</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class MTurk
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+			
+				MTurk contains wrappers around the Java API for accessing Mechanical       Turk.<p><code>mturk</code> is a global instance of the MTurk class.</p>
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_edu_mit_csail_uid_turkit_js_libs_MTurk.js.html">MTurk.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class MTurk.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/MTurk.html">MTurk</a></b>()
+							</div>
+							<div class="description">You probably want to use the global variable <code>mturk</code>.</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class MTurk.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#approveAssignment">approveAssignment</a></b>(assignment, reason)
+								</div>
+								<div class="description">Calls <a href="../symbols/MTurk.html#approveAssignmentRaw">MTurk#approveAssignmentRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#approveAssignmentRaw">approveAssignmentRaw</a></b>(assignment, reason)
+								</div>
+								<div class="description">Approves the given <code>assignment</code>, and provides an optional<code>reason</code>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#approveAssignments">approveAssignments</a></b>(assignments, reason)
+								</div>
+								<div class="description">Calls <a href="../symbols/MTurk.html#approveAssignment">MTurk#approveAssignment</a> for each assignment in the given<code>assignments</code> array.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#assertWeCanSpend">assertWeCanSpend</a></b>(money, hits, callbackBeforeCrash)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#createHIT">createHIT</a></b>(params)
+								</div>
+								<div class="description">Calls <a href="../symbols/MTurk.html#createHITRaw">MTurk#createHITRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#createHITRaw">createHITRaw</a></b>(params)
+								</div>
+								<div class="description">Creates a HIT.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#deleteHIT">deleteHIT</a></b>(hit)
+								</div>
+								<div class="description">Calls <a href="../symbols/MTurk.html#deleteHITRaw">MTurk#deleteHITRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#deleteHITRaw">deleteHITRaw</a></b>(hit)
+								</div>
+								<div class="description">Deletes the given <code>hit</code>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#deleteHITs">deleteHITs</a></b>(hits)
+								</div>
+								<div class="description">Calls <a href="../symbols/MTurk.html#deleteHITsRaw">MTurk#deleteHITsRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#deleteHITsRaw">deleteHITsRaw</a></b>(hits)
+								</div>
+								<div class="description">Calls <a href="../symbols/MTurk.html#deleteHITRaw">MTurk#deleteHITRaw</a> on the array of <code>hits</code>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#extendHIT">extendHIT</a></b>(hit, moreAssignments, moreSeconds)
+								</div>
+								<div class="description">Calls <a href="../symbols/MTurk.html#extendHITRaw">MTurk#extendHITRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#extendHITRaw">extendHITRaw</a></b>(hit, moreAssignments, moreSeconds)
+								</div>
+								<div class="description">Extends the <code>hit</code> by the given number of assignments (<code>moreAssignments</code>),and the given number of seconds (<code>moreSeconds</code>).</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#getAccountBalance">getAccountBalance</a></b>()
+								</div>
+								<div class="description">Returns the number of dollars in the user's MTurk account.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#getHIT">getHIT</a></b>(hit, getAssignments)
+								</div>
+								<div class="description">Returns an object representing all of the information MTurk has on the givenHIT, including the assigments, and the associated answer data.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#getHITs">getHITs</a></b>(maxPages)
+								</div>
+								<div class="description">Returns an array of HIT data for all the HITs you currently have on MTurk.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#getReviewableHITs">getReviewableHITs</a></b>(maxPages)
+								</div>
+								<div class="description">Returns a list of HIT Ids of HITs that are ready to be reviewed.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#grantBonus">grantBonus</a></b>(assignment, amount, reason)
+								</div>
+								<div class="description">Calls <a href="../symbols/MTurk.html#grantBonusRaw">MTurk#grantBonusRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#grantBonusRaw">grantBonusRaw</a></b>(assignment, amount, reason)
+								</div>
+								<div class="description">Grants a bonus of the given <code>amount</code> to the given<code>assignment</code> for the stated <code>reason</code>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#parseHIT">parseHIT</a></b>(hit)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#rejectAssignment">rejectAssignment</a></b>(assignment, reason)
+								</div>
+								<div class="description">Calls <a href="../symbols/MTurk.html#rejectAssignmentRaw">MTurk#rejectAssignmentRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#rejectAssignmentRaw">rejectAssignmentRaw</a></b>(assignment, reason)
+								</div>
+								<div class="description">Rejects the given <code>assignment</code>, and provides an optional<code>reason</code>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#rejectAssignments">rejectAssignments</a></b>(assignments, reason)
+								</div>
+								<div class="description">Calls <a href="../symbols/MTurk.html#rejectAssignment">MTurk#rejectAssignment</a> for each assignment in the given<code>assignments</code> array.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#sort">sort</a></b>(a, comparator)
+								</div>
+								<div class="description">Works just like the JavaScript array sort function, except that this one canperform comparisons in parallel on MTurk by catching the "stop" exceptionwhich is thrown when waiting on an MTurk HIT using <a href="../symbols/MTurk.html#waitForHIT">MTurk#waitForHIT</a>.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#tryToGetAssignmentId">tryToGetAssignmentId</a></b>(assignment)
+								</div>
+								<div class="description">Tries to determine the type of <code>assignment</code> and return theassignment Id.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#tryToGetHITId">tryToGetHITId</a></b>(hit)
+								</div>
+								<div class="description">Tries to determine the type of <code>hit</code>, and return the HIT Id.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#vote">vote</a></b>(hit, extractVoteFromAnswer)
+								</div>
+								<div class="description">Collects multiple votes until a minimum number of necessary votes for asingle choice is achieved.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/MTurk.html#waitForHIT">waitForHIT</a></b>(hit)
+								</div>
+								<div class="description">Returns information about the <code>hit</code> if it is done (see<a href="../symbols/MTurk.html#getHIT">MTurk#getHIT</a>), and throwing the "stop" exception if it is still inprogress.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>MTurk</b>()
+				</div>
+				
+				<div class="description">
+					You probably want to use the global variable <code>mturk</code>.
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="approveAssignment"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>approveAssignment</b>(assignment, reason)
+					
+					</div>
+					<div class="description">
+						Calls <a href="../symbols/MTurk.html#approveAssignmentRaw">MTurk#approveAssignmentRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>assignment</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>reason</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="approveAssignmentRaw"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>approveAssignmentRaw</b>(assignment, reason)
+					
+					</div>
+					<div class="description">
+						Approves the given <code>assignment</code>, and provides an optional<code>reason</code>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>assignment</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>reason</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="approveAssignments"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>approveAssignments</b>(assignments, reason)
+					
+					</div>
+					<div class="description">
+						Calls <a href="../symbols/MTurk.html#approveAssignment">MTurk#approveAssignment</a> for each assignment in the given<code>assignments</code> array.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>assignments</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>reason</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="assertWeCanSpend"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>assertWeCanSpend</b>(money, hits, callbackBeforeCrash)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>money</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>hits</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>callbackBeforeCrash</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="createHIT"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>createHIT</b>(params)
+					
+					</div>
+					<div class="description">
+						Calls <a href="../symbols/MTurk.html#createHITRaw">MTurk#createHITRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>params</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="createHITRaw"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>createHITRaw</b>(params)
+					
+					</div>
+					<div class="description">
+						Creates a HIT. <i>params</i> is an object with the following properties:<ul><li><b>title</b>: displayed in the list of HITs on MTurk.</li><li><b>description</b>: <b>desc</b> is also accepted. A slightly longerdescription of the HIT, also shown in the list of HITs on MTurk</li><li><b>question</b>: a string of XML specifying what will be shown. <ahref="http://docs.amazonwebservices.com/AWSMechanicalTurkRequester/2008-08-02/index.html?ApiReference_QuestionFormDataStructureArticle.html">Seedocumentation here</a>. Instead of <i>question</i>, you may use the following special parameters:
+ <ul>
+ <li><b>url</b>: creates an external question pointing to this URL</li>
+ <li><b>height</b>: (optional) height of the iFrame embedded in MTurk, in pixels (default is 600).</li>
+ </ul>
+ 
+ </li><li><b>reward</b>: how many dollars you want to pay per assignment for thisHIT.</ul>The following properties are optional:<ul><li><b>keywords</b>: keywords to help people search for your HIT.</li><li><b>assignmentDurationInSeconds</b>: default is 1 hour's worth ofseconds.</li><li><b>autoApprovalDelayInSeconds</b>: default is 1 month's worth ofseconds.</li><li><b>lifetimeInSeconds</b>: default is 1 week's worth of seconds.</li><li><b>maxAssignments</b>: <b>assignments</b> is also accepted. default is 1.</li><li><b>requesterAnnotation</b>: default is no annotation.</li><li><b>qualificationRequirements</b>: default is no requirements.</li><li><b>minApproval</b>: minimum approval percentage. The appropriaterequirement will be added if you supply a percentage here.</li></ul>
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>params</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="deleteHIT"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>deleteHIT</b>(hit)
+					
+					</div>
+					<div class="description">
+						Calls <a href="../symbols/MTurk.html#deleteHITRaw">MTurk#deleteHITRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hit</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="deleteHITRaw"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>deleteHITRaw</b>(hit)
+					
+					</div>
+					<div class="description">
+						Deletes the given <code>hit</code>.
+	If there are any completed assignments that have not been approved or rejected, then they are approved.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hit</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="deleteHITs"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>deleteHITs</b>(hits)
+					
+					</div>
+					<div class="description">
+						Calls <a href="../symbols/MTurk.html#deleteHITsRaw">MTurk#deleteHITsRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hits</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="deleteHITsRaw"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>deleteHITsRaw</b>(hits)
+					
+					</div>
+					<div class="description">
+						Calls <a href="../symbols/MTurk.html#deleteHITRaw">MTurk#deleteHITRaw</a> on the array of <code>hits</code>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hits</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="extendHIT"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>extendHIT</b>(hit, moreAssignments, moreSeconds)
+					
+					</div>
+					<div class="description">
+						Calls <a href="../symbols/MTurk.html#extendHITRaw">MTurk#extendHITRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hit</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>moreAssignments</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>moreSeconds</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="extendHITRaw"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>extendHITRaw</b>(hit, moreAssignments, moreSeconds)
+					
+					</div>
+					<div class="description">
+						Extends the <code>hit</code> by the given number of assignments (<code>moreAssignments</code>),and the given number of seconds (<code>moreSeconds</code>).
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hit</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>moreAssignments</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>moreSeconds</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getAccountBalance"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getAccountBalance</b>()
+					
+					</div>
+					<div class="description">
+						Returns the number of dollars in the user's MTurk account.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getHIT"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getHIT</b>(hit, getAssignments)
+					
+					</div>
+					<div class="description">
+						Returns an object representing all of the information MTurk has on the givenHIT, including the assigments, and the associated answer data. The returnedobject will have a value called <i>done</i> set to true iff all the pendingassigments for this HIT have been completed (unless <code>getAssignments</code> is false).<p>Note that the <i>answer</i> data structure associated with each assigment issimplified. It is recommended that you print out the result of this functionusing <a href="../symbols/_global_.html#json">json</a>, in order to know what it looks like for your specificsituation.</p>
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hit</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>getAssignments</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getHITs"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getHITs</b>(maxPages)
+					
+					</div>
+					<div class="description">
+						Returns an array of HIT data for all the HITs you currently have on MTurk.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>maxPages</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getReviewableHITs"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getReviewableHITs</b>(maxPages)
+					
+					</div>
+					<div class="description">
+						Returns a list of HIT Ids of HITs that are ready to be reviewed.You may optionally specify <code>maxPages</code>,to limit the number of pages of results returned.Each page will have up to 100 reviewable HIT Ids.If <code>maxPages</code> is specified,then the return value will have a property called <code>totalNumResults</code>,which indicates how many HITs are reviewable.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>maxPages</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="grantBonus"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>grantBonus</b>(assignment, amount, reason)
+					
+					</div>
+					<div class="description">
+						Calls <a href="../symbols/MTurk.html#grantBonusRaw">MTurk#grantBonusRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>assignment</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>amount</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>reason</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="grantBonusRaw"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>grantBonusRaw</b>(assignment, amount, reason)
+					
+					</div>
+					<div class="description">
+						Grants a bonus of the given <code>amount</code> to the given<code>assignment</code> for the stated <code>reason</code>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>assignment</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>amount</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>reason</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="parseHIT"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>parseHIT</b>(hit)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hit</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="rejectAssignment"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>rejectAssignment</b>(assignment, reason)
+					
+					</div>
+					<div class="description">
+						Calls <a href="../symbols/MTurk.html#rejectAssignmentRaw">MTurk#rejectAssignmentRaw</a> inside of <a href="../symbols/TraceManager.html#once">TraceManager#once</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>assignment</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>reason</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="rejectAssignmentRaw"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>rejectAssignmentRaw</b>(assignment, reason)
+					
+					</div>
+					<div class="description">
+						Rejects the given <code>assignment</code>, and provides an optional<code>reason</code>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>assignment</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>reason</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="rejectAssignments"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>rejectAssignments</b>(assignments, reason)
+					
+					</div>
+					<div class="description">
+						Calls <a href="../symbols/MTurk.html#rejectAssignment">MTurk#rejectAssignment</a> for each assignment in the given<code>assignments</code> array.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>assignments</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>reason</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="sort"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>sort</b>(a, comparator)
+					
+					</div>
+					<div class="description">
+						Works just like the JavaScript array sort function, except that this one canperform comparisons in parallel on MTurk by catching the "stop" exceptionwhich is thrown when waiting on an MTurk HIT using <a href="../symbols/MTurk.html#waitForHIT">MTurk#waitForHIT</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>a</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>comparator</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="tryToGetAssignmentId"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>tryToGetAssignmentId</b>(assignment)
+					
+					</div>
+					<div class="description">
+						Tries to determine the type of <code>assignment</code> and return theassignment Id.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>assignment</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="tryToGetHITId"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>tryToGetHITId</b>(hit)
+					
+					</div>
+					<div class="description">
+						Tries to determine the type of <code>hit</code>, and return the HIT Id.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hit</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="vote"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>vote</b>(hit, extractVoteFromAnswer)
+					
+					</div>
+					<div class="description">
+						Collects multiple votes until a minimum number of necessary votes for asingle choice is achieved. The <code>hit</code> supplied to this functionmust have its <i>maxAssignments</i> set to the minimum number of votesnecessary for a single choice. This function will add assignments ifnecessary. This function relies on <code>extractVoteFromAnswer</code> toextract a String representing the choice given an answer data structure (see<a href="../symbols/MTurk.html#getHIT">MTurk#getHIT</a>).<p>The return value is an object with the following entries:</p><ul><li><b>bestOption</b>: the String representing the choice with the mostvotes.</li><li><b>totalVoteCount</b>: the number of votes received from turkers.</li><li><b>voteCounts</b>: an object with key/value pairs representingchoice/voteCounts.</li><li><b>hit</b>: the HIT data structure representing the HIT on the final iteration of the voting process.</li></ul>
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hit</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>extractVoteFromAnswer</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="waitForHIT"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>waitForHIT</b>(hit)
+					
+					</div>
+					<div class="description">
+						Returns information about the <code>hit</code> if it is done (see<a href="../symbols/MTurk.html#getHIT">MTurk#getHIT</a>), and throwing the "stop" exception if it is still inprogress.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>hit</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://www.jsdoctoolkit.org/" target="_blank">JsDoc Toolkit</a> 2.1.0 on Fri Jan 28 2011 13:06:35 GMT+0800 (CST)
+		</div>
+	</body>
+</html>

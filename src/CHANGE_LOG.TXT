@@ -1,0 +1,318 @@
+
+-------------------------------
+version 0.2.6
+
+- bug fix: qualifications should work now
+- soap arguments are now packaged up as XML in JavaScript, rather than Java
+
+-------------------------------
+version 0.2.5
+
+- bug fix -- MTurk REST API craps out for HITs with a very long "question" field, so we use SOAP API instead,
+	which POSTs the data.
+
+-------------------------------
+version 0.2.4
+
+- bug fix -- now loads JavaScript files using UTF-8
+
+-------------------------------
+version 0.2.3
+
+- bug fix -- if turker responses contained "{"'s, then TurKit would complain
+
+-------------------------------
+version 0.2.2
+
+- fixed a couple bugs with S3 API
+
+-------------------------------
+version 0.2.1
+
+- got documentation for MTurk and S3 APIs to show up (moved them out of "utils")
+
+-------------------------------
+version 0.2.0
+
+- hot-keys
+	- Ctrl-R to run
+	- Ctrl-Shift-R  to run repeatedly
+	- Ctrl-S to stop
+	
+- added property "repeatInterval" to adjust how many seconds to wait before re-running
+
+- export is now recursive (zips up subdirectories as well)
+	- put an "_" in front of the names of any directories you don't want to export
+
+- much smaller
+	- dropped dependence on
+		- Amazon's MTurk Java API
+		- jetS3t
+		- most of apache commons (except commons-cli) 
+
+
+-------------------------------
+version 0.1.44
+
+- export command exports directories as well
+	- you can hide directories from this process by
+		making their name begin with either a '.' or a '_'
+
+-------------------------------
+version 0.1.43
+
+- export command hides the Amazon keys from *all* .js.properties files,
+	not just the one associated with the currently running file
+
+
+-------------------------------
+version 0.1.42
+
+JavaScript
+
+- printed call stacks are better now (before they sometimes pointed to places that re-threw exceptions, as opposed to the original exceptions)
+
+- createHIT nows warns you when you pass keys to it that it doesn't understand
+
+- approving and rejecting assignments without a message should no longer give people the message "undefined"
+
+- files put into S3 now get random names, instead of their original file names
+	- this is done so that TurKit processes using files with the same names do not conflict with each other...
+		- perhaps each TurKit process should have it's own bucket? hm...
+		
+- added Stats.js with basic statistics functions
+
+- TraceManager a little more efficient (uses queryRaw)
+	- added peekFrame function to return information about the current frame
+	
+- utils
+	- added "group", "fold", "Set", "Bag" and "jsonPath"
+
+- added queryRaw function, that runs non-side-effecting queries (essentially "reads" as opposed to "writes" to the JavaScript database)
+	
+Java UI
+
+- "Run Repeatedly" should now stop if the program runs through without throwing any "stop" exceptions
+
+- added confirmations before deleting HITs from the Tools menu
+
+- export command improved
+	- doesn't export "turkit.properties"
+	- and more... I think it is more consistent about changing workerId's
+
+Java
+
+- added utility function for reflectively listing resources
+
+- fixed threading bug
+	- sometimes "Run Repeatedly" would deadlock, and now it doesn't.. or shouldn't
+
+- added Apache commons-math-2.0.jar (because 10mb isn't big enough ;)
+	- this has support for t-testing, among other things
+	
+- minor refactorings and code optimization
+
+-------------------------------
+version 0.1.36
+
+- efficiency improvement to waitForHIT:
+	if you had a 100 "attempt" calls all waiting on different HITs,
+	it used to be that TurKit would need to make 100 calls to MTurk, to check on each of them;
+	now it makes one call to getReviewableHITs,
+	and caches this value for 1 minute,
+	so that subsequent calls to waitForHIT can check against the cached list of reviewable HITs.
+	
+- s3.putString now generates random names for S3 objects, rather than using the md5 hash.
+	The reason for this is that you might create S3 objects in two separate projects which happen to be identical,
+	and it seems fine at first to let them share the same name on S3,
+	until one of those projects decides that it is done with the object, and deletes it from S3,
+	without the other project knowing about it.
+
+- added "Export" option under the "Tools" menu,
+	this has the effect of creating a zip out of your code, database, and any other files in the same directory,
+	AND, it also randomly changes all the workerIds found in the database,
+	so that you may feel more comfortable sharing this file with other people,
+	without violating the privacy of turkers.
+	To be more precise, it changes the workerId's found in the database wherever they appear in any files put into the zip file.
+	All workerId's are changed consistently,
+	so if a single worker did all your HITs,
+	then all the worker Ids will be the same.
+
+- bug fix: the maxHITs safety counter now counts HITs rather than assignments
+
+- added JavaScript utility functions: trim, and Set (which creates a set out of an array of values)
+
+- technical
+	- MTurk.restRequest now strips the XML meta tag at the top of responses from Amazon,
+		since the JavaScript XML parser doesn't like it
+	- added restRequest method to TurKit.java
+	- bug fix: FileNotFound exception thrown from JavaScript was causing weirdness
+	
+
+-------------------------------
+version 0.1.35
+
+- the TurKit jar can now be executed in headless mode using commandline options
+
+-------------------------------
+version 0.1.34
+
+- added function to write a string to a file (called write)
+- added function called "read" which is the same as "slurp"
+- the "read" and "slurp" functions can now read from a URL
+
+
+low level stuff:
+
+- created MTurk.java, which will eventually replace reliance on Amazon's Java API,
+	hopefully reducing the size of the JAR by quite a bit.
+
+- added function "rethrow" to JavaScript API
+	- this function keeps the original stack trace of the exception,
+		making bugs easier to find
+		
+- added utilities for converting Base64 encoding (used by MTurk.java)
+
+- minor bug fixes:
+	- highlightDiff now works with empty-string parameters
+	- task-template.html now adds a hidden form parameter, if you don't add any,
+		so that MTurk doesn't complain about there not being any form parameters.
+
+-------------------------------
+version 0.1.33
+
+- function added to JavaScript API called getFile that accepts a relative path name,
+	and returns a Java File object. The path is relative to the directory containing the JavaScript program.
+	This function is now used internally in functions like slurp and s3.putFile.
+	NOTE: you can also access the directory of the JavaScript program using the new global variable: baseDir.
+	
+- the print function now prints json if the thing you are printing is an object
+
+- bug fix: the open dialog now shows folders, so that you can navigate places
+
+- bug fix: the build.xml now creates the necessary output directory
+	(which happened to exist on my own machine).
+
+-------------------------------
+version 0.1.32
+
+- added new pane showing HITs and S3 Objects created by the current TurKit program,
+	with links that can be clicked on to open the appropriate URLs in a separate brower.
+	
+- S3 functions now support the notion of a default bucket,
+	which is created by concatenating together your AWS access key ID, and the string ".TurKit".
+	For example, it will look something like 8XAF98FASHGJVVWE.TurKit.
+	The putString method now also supports the notion of a default key,
+	which is currently just the md5 hash of the string contents concatenated with ".html".
+	
+- bug fix: buttons weren't being disabled in IE when previewing the HIT
+
+- bug fix: maxMoney and maxHITs now work.. hopefully.
+	I finally ran a project which needed to break these limits,
+	so I had a chance to discover that it still wasn't working, fix it, and test it.
+
+- some files have been moved around
+
+-------------------------------
+version 0.1.31
+
+- Fixed show-stopping bug in version 0.1.30, which apparently can't even run.
+
+- bug fix: if the most recently loaded file has been deleted,
+	TurKit will now default to the directory that it was in.
+
+-------------------------------
+version 0.1.30
+
+- Loading the TurKit jar now asks you to open a JavaScript file.
+	This JavaScript file will have properties associated with it,
+	including the AWS access identifiers, and the current mode.
+	You may set these parameters at any time,
+	and they will take effect when the JavaScript file is re-executed.
+	
+- added menu bar with save, and tools for deleting HITs
+
+- bug fix: reset database now removes HITs regardless of which mode they were created in
+	(it knows which mode (sandbox or real) each HIT was created in,
+	and it switches to that mode before deleting it, for each HIT)
+	
+- quitting will ask if you want to save
+
+- bug fix: maxMoney and maxHITs are now adjustable (the values in the properties file were ignored before)
+
+- "Reset Database" now creates a backup copy of the database before deleting it.
+	this file will look something like: mycode.js.database.old2
+
+- there are now 3 different modes:
+	 * "offline" will not let you access MTurk or S3. (Good for using after an experiment is completed, and all the data is in the database)
+	 * "sandbox" will let you access the MTurk sandbox, and the real S3.
+	 * "real" mode accesses the real MTurk and the real S3.
+
+- Java API change:
+	- it is now possible to "reinit" the TurKit object with new parameters,
+		this function will only re-initialize what is necessary based on which parameters are different from before.
+		This features allows the GUI to change the mode without restarting,
+		in fact, the mode may be changed programmatically using the "setMode" function in JavaScript
+
+- JavaScript API change:
+	- added "setMode" function (you probably don't want to use this, it is mainly used internally)
+
+-------------------------------
+version 0.1.29
+
+- Java API change: TurKit.runOnce now accepts different parameters.
+
+- JavaScript API change:
+	- new "slurp" function which accepts a filename/path and returns the file contents as a string 
+	- MTurk.vote now returns an additional parameter: the hit as it looked right before it was deleted
+
+- highlightDiff moved from turkit.js to util.js (no effect visible to users, except in documentation)
+
+- bug fix: now able to load database files of arbitrary size.
+	It used to be that TurKit could not reload the database for some TurKit programs,
+	if they were too large.
+	
+- minor bug fixes:
+	- task-template.html now disables buttons as well as inputs and textareas
+	- fixed problem when reseting database if no HITs had been created
+	- fixed bug in mturk.deleteHITRaw, triggered when deleting a HITs where some assignments had been approved already
+
+-------------------------------
+version 0.1.27-test
+
+- TurKit now tries to notice when you call "once" functions out of order.
+	This should help catch cases where you edit your program in "illegal" ways,
+	that get the program execution out of step with the memoized execution trace.
+
+- printed messages, like "hit created" are now shown every time the program is run.
+	This means you will still have access to that url that it shows,
+	even if you re-run the program.
+
+-------------------------------
+version 0.1.26-test
+
+
+- "Reset Database" now deletes all the HITs and S3 Objects associated with the database.
+	In particular, any time you call mturk.createHIT or s3.putObject in a TurKit program,
+	the HIT Id or S3 Object URL is stored in the database,
+	and when the database is reset, all of these HITs and S3 Objects are removed.
+
+- new function mturk.deleteHITRaw
+- the deleteHIT functions now work better -- in general, they will always succeed at deleting the HIT,
+	no matter what state it is in, even if turkers are currently working on assignments for the HIT.
+	Note that all assignments that haven't been rejected for the HIT will be approved
+	(this is consistent with the previous behavior).
+
+- deleteHIT now removes the HIT from "__HITs" in the database
+- "Delete HITs" button changed to "Delete All HITs" (performs same function)
+- the global value "__HITs" in the database is now an object (each key is a HIT Id), as opposed to an Array
+
+- when S3 objects are created or deleted, the new "__S3_Objects" variable in the database is updated.
+	It stores the URLs for each S3 Object as a key.
+	
+- new function s3.getURL, useful for constructing an S3 URL based on a bucket name and a key
+
+-------------------------------
+version 0.1.25
+
+- this was the version when the change log was created

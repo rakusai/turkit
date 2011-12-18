@@ -1,0 +1,778 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - TraceManager</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header" style="width:100%;text-align:right"><h3><i>TurKit JavaScript API v0.2.5</i></h3></div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="../symbols/Array.html">Array</a></li>
+	
+	<li><a href="../symbols/Database.html">Database</a></li>
+	
+	<li><a href="../symbols/MTurk.html">MTurk</a></li>
+	
+	<li><a href="../symbols/S3.html">S3</a></li>
+	
+	<li><a href="../symbols/String.html">String</a></li>
+	
+	<li><a href="../symbols/TraceManager.html">TraceManager</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class TraceManager
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+			
+				The TraceManager manages a sort of stack frame that is memoized on       disk (using the JavaScript database associated with the current file).       All stack frames are memoized, so the result is a sort of stack tree.<p><code>traceManager</code> is a global instance of this class.</p>
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_edu_mit_csail_uid_turkit_js_libs_TraceManager.js.html">TraceManager.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class TraceManager.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/TraceManager.html">TraceManager</a></b>()
+							</div>
+							<div class="description">You probably want to just use the global variable <code>traceManager</code>.</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class TraceManager.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TraceManager.html#attempt">attempt</a></b>(func, frameName)
+								</div>
+								<div class="description">Calls the function <i>func</i> in a new memoized stack frame, and catchesthe "stop" exception.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TraceManager.html#getFrameValue">getFrameValue</a></b>(name)
+								</div>
+								<div class="description">Gets the value of a "local variable" in the current memoized stack frame.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TraceManager.html#once">once</a></b>(func, frameName)
+								</div>
+								<div class="description">Calls the function <i>func</i> only once; subsequent runs of the programwill not call <i>func</i> if it returns successfully this time.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TraceManager.html#peekFrame">peekFrame</a></b>(frameName)
+								</div>
+								<div class="description">Returns the frame we would see if we called pushFrame.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TraceManager.html#popFrame">popFrame</a></b>()
+								</div>
+								<div class="description">Pops the top stack frame off of the memoized stack.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TraceManager.html#pushFrame">pushFrame</a></b>(frameName)
+								</div>
+								<div class="description">Pushes a new stack frame onto the memoized stack.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TraceManager.html#resetTrace">resetTrace</a></b>(traceName)
+								</div>
+								<div class="description">Similar to <a href="../symbols/TraceManager.html#setTrace">TraceManager#setTrace</a>, except that it clears the memoizedstack frame data for all other trace versions.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TraceManager.html#setFrameValue">setFrameValue</a></b>(name, value)
+								</div>
+								<div class="description">Sets the value of a "local variable" in the current memoized stack frame.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TraceManager.html#setTrace">setTrace</a></b>(traceName)
+								</div>
+								<div class="description">Sets the root of the memoized stack frame tree.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/TraceManager.html#stop">stop</a></b>()
+								</div>
+								<div class="description">Throws a "stop" exception.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>TraceManager</b>()
+				</div>
+				
+				<div class="description">
+					You probably want to just use the global variable <code>traceManager</code>.
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="attempt"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>attempt</b>(func, frameName)
+					
+					</div>
+					<div class="description">
+						Calls the function <i>func</i> in a new memoized stack frame, and catchesthe "stop" exception. Returns <code>true</code> if the call succeeds.Returns <code>false</code> if <i>func</i> throws a "stop" exception (see<a href="../symbols/TraceManager.html#stop">TraceManager#stop</a>).
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>func</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>frameName</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getFrameValue"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getFrameValue</b>(name)
+					
+					</div>
+					<div class="description">
+						Gets the value of a "local variable" in the current memoized stack frame.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>name</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="once"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>once</b>(func, frameName)
+					
+					</div>
+					<div class="description">
+						Calls the function <i>func</i> only once; subsequent runs of the programwill not call <i>func</i> if it returns successfully this time. If <i>func</i>throws an exception, then it will be called again when the program isre-executed.<p>This function creates a new memoized stack frame before calling <i>func</i>.You can give this stack frame a name as an optional second parameter<i>frameName</i>.</p>
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>func</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>frameName</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="peekFrame"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>peekFrame</b>(frameName)
+					
+					</div>
+					<div class="description">
+						Returns the frame we would see if we called pushFrame.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>frameName</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="popFrame"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>popFrame</b>()
+					
+					</div>
+					<div class="description">
+						Pops the top stack frame off of the memoized stack. Note that this does notremove anything from the memoized stack. The memoized stack is a tree whichstores a trace of every stack frame that ever went onto the stack.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="pushFrame"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>pushFrame</b>(frameName)
+					
+					</div>
+					<div class="description">
+						Pushes a new stack frame onto the memoized stack.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>frameName</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="resetTrace"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>resetTrace</b>(traceName)
+					
+					</div>
+					<div class="description">
+						Similar to <a href="../symbols/TraceManager.html#setTrace">TraceManager#setTrace</a>, except that it clears the memoizedstack frame data for all other trace versions.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>traceName</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setFrameValue"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setFrameValue</b>(name, value)
+					
+					</div>
+					<div class="description">
+						Sets the value of a "local variable" in the current memoized stack frame.This value is persisted in the memoized stack.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>name</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>value</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setTrace"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setTrace</b>(traceName)
+					
+					</div>
+					<div class="description">
+						Sets the root of the memoized stack frame tree. Calling this method with anew value for <i>traceName</i> has the effect of reseting all calls to<a href="../symbols/TraceManager.html#once">TraceManager#once</a>, so that they re-execute their functions.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>traceName</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="stop"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>stop</b>()
+					
+					</div>
+					<div class="description">
+						Throws a "stop" exception. This is the preferred way of stopping execution inorder to wait on HITs on Mechanical Turk. Note that the "stop" exception iscaught by <a href="../symbols/TraceManager.html#attempt">TraceManager#attempt</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://www.jsdoctoolkit.org/" target="_blank">JsDoc Toolkit</a> 2.1.0 on Fri Jan 28 2011 13:06:35 GMT+0800 (CST)
+		</div>
+	</body>
+</html>

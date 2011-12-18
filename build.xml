@@ -1,0 +1,53 @@
+<project name="turkit" default="build" basedir=".">
+
+	<property file="src/resources/version.properties" />
+	<property name="run_jar_file" value="TurKit-${version.value}.jar" />
+	<property name="output_dir" value="build" />
+
+	<target name="jsdocs" description="build JavaScript documentation">
+		<echo file="jsdoc-toolkit/templates/jsdoc/static/header.html">&lt;div id=&quot;header&quot; style=&quot;width:100%;text-align:right&quot;&gt;&lt;h3&gt;&lt;i&gt;TurKit JavaScript API v${version.value}&lt;/i&gt;&lt;/h3&gt;&lt;/div&gt;</echo>
+		<exec executable="java" dir="jsdoc-toolkit">
+			<arg value="-jar" />
+			<arg value="jsrun.jar" />
+			<arg value="app/run.js" />
+			<arg value="-a" />
+			<arg value="-t=templates/jsdoc" />
+			<arg value="-d=../jsdocs" />
+			<arg value="../src/edu/mit/csail/uid/turkit/js_libs/*.js" />
+		</exec>
+	</target>
+
+	<target name="javadoc" description="build Java documentation">
+		<exec executable="javadoc">
+			<arg value="-d" />
+			<arg value="javadocs" />
+			<arg value="-sourcepath" />
+			<arg value="src" />
+			<arg value="-subpackages" />
+			<arg value="edu" />
+			<arg value="-exclude" />
+			<arg value="edu.mit.csail.uid.turkit.util:edu.mit.csail.uid.turkit.gui" />
+			<arg value="-header" />
+			<arg value="TurKit Java API&lt;br/&gt;v${version.value}" />
+		</exec>
+	</target>
+
+	<target name="create_run_jar">
+		<mkdir dir="${output_dir}"/>
+		<jar destfile="${output_dir}/${run_jar_file}" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Main-Class" value="edu.mit.csail.uid.turkit.gui.Main" />
+				<attribute name="Class-Path" value="." />
+			</manifest>
+			<fileset dir="bin" />
+			<zipfileset excludes="META-INF/*.SF" src="libs/commons-cli-1.2.0/commons-cli-1.2.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="libs/rhino1_7R2/js.jar" />
+			<zipfileset excludes="META-INF/*.SF" src="libs/javadocking1.4.1/javadocking.jar" />
+		</jar>
+	</target>
+
+	<target name="build" depends="jsdocs,javadoc,create_run_jar" description="build everything">
+	</target>
+
+</project>

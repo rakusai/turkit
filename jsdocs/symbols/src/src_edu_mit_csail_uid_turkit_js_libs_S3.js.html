@@ -1,0 +1,210 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">/**
+<span class='line'>  3</span>  * You probably want to use the global variable &lt;code>s3&lt;/code>.
+<span class='line'>  4</span>  * 
+<span class='line'>  5</span>  * @class S3 contains wrappers around the JetS3t API for accessing Amazon's S3 storage service.
+<span class='line'>  6</span>  * 
+<span class='line'>  7</span>  * &lt;p>
+<span class='line'>  8</span>  * &lt;code>s3&lt;/code> is a global instance of the S3 class.
+<span class='line'>  9</span>  * &lt;/p>
+<span class='line'> 10</span>  */</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">S3</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="WHIT">	</span><span class="NAME">this.defaultBucketName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">javaTurKit.awsAccessKeyID</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">".TurKit"</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 14</span> 
+<span class='line'> 15</span> </span><span class="COMM">/**
+<span class='line'> 16</span>  * The default name used for buckets: &lt;code>your-aws-access-key-id.TurKit&lt;/code>.
+<span class='line'> 17</span>  */</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="NAME">S3.prototype.defaultBucketName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT">
+<span class='line'> 19</span> 
+<span class='line'> 20</span> </span><span class="COMM">/**
+<span class='line'> 21</span> 	Creates an S3 URL given a &lt;code>bucket&lt;/code> and a &lt;code>key&lt;/code>.
+<span class='line'> 22</span>  */</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="NAME">S3.prototype.getURL</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">bucket</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">"http://s3.amazonaws.com/"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">bucket</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"/"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">key</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 26</span> 
+<span class='line'> 27</span> </span><span class="COMM">/**
+<span class='line'> 28</span> 	Extracts the bucket name and key from an S3 URL. For instance, given &lt;code>http://s3.amazonaws.com/hello/hi.txt&lt;/code>,
+<span class='line'> 29</span> 	returns &lt;code>{bucket:"hello", key:"hi.txt"}&lt;/code>.
+<span class='line'> 30</span>  */</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="NAME">S3.prototype.getBucketAndKey</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">url</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">a</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">url.match</span><span class="PUNC">(</span><span class="REGX">/http:\/\/s3\.amazonaws\.com\/([^\/]+)\/(.*)/</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">a</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">        </span><span class="NAME">a</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">url.match</span><span class="PUNC">(</span><span class="REGX">/http:\/\/([^\/]+)\.s3\.amazonaws\.com\/(.*)/</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">a</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="NAME">bucket</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">a</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">a</span><span class="PUNC">[</span><span class="NUMB">2</span><span class="PUNC">]</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 39</span> 
+<span class='line'> 40</span> </span><span class="COMM">/**
+<span class='line'> 41</span> 	Remove the object with the given &lt;code>key&lt;/code> from the bucket with the given &lt;code>bucketName&lt;/code>.
+<span class='line'> 42</span> 	If only one parameter is supplied, it assumes it is an S3 URL, and attempts to extract the bucket name and key from that.
+<span class='line'> 43</span> 	
+<span class='line'> 44</span> 	&lt;p>&lt;code>bucketName&lt;/code> is optional.
+<span class='line'> 45</span> 	If you do not provide it, the name {@link S3#defaultBucketName} will be used.&lt;/p>
+<span class='line'> 46</span>  */</span><span class="WHIT">
+<span class='line'> 47</span> </span><span class="NAME">S3.prototype.deleteObjectRaw</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 48</span> 
+<span class='line'> 49</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">javaTurKit.mode</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">"offline"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="STRN">"Not allowed in offline mode."</span><span class="WHIT">
+<span class='line'> 50</span> 
+<span class='line'> 51</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">bucketName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">		</span><span class="NAME">bucketName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.defaultBucketName</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">		</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">a</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getBucketAndKey</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">		</span><span class="NAME">bucketName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">a.bucket</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">		</span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">a.key</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 59</span> 
+<span class='line'> 60</span> </span><span class="WHIT">	</span><span class="NAME">Packages.edu.mit.csail.uid.turkit.S3.deleteObject</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">		</span><span class="NAME">javaTurKit.awsAccessKeyID</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">javaTurKit.awsSecretAccessKey</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">		</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">	</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">url</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getURL</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">	</span><span class="NAME">verbosePrint</span><span class="PUNC">(</span><span class="STRN">"deleted S3 object at: "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">url</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">	</span><span class="NAME">database.query</span><span class="PUNC">(</span><span class="STRN">"delete __S3_Objects["</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">json</span><span class="PUNC">(</span><span class="NAME">url</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"]"</span><span class="PUNC">)</span><span class="WHIT">	</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 68</span> 
+<span class='line'> 69</span> </span><span class="COMM">/**
+<span class='line'> 70</span>  * Calls {@link S3#deleteObjectRaw} inside of {@link TraceManager#once}.
+<span class='line'> 71</span>  */</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="NAME">S3.prototype.deleteObject</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">once</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">				</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">s3.deleteObjectRaw</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 77</span> 
+<span class='line'> 78</span> </span><span class="COMM">/**
+<span class='line'> 79</span> 	Create a public object in S3 based on the suplied data.
+<span class='line'> 80</span> 	Returns the URL for the object.
+<span class='line'> 81</span> 
+<span class='line'> 82</span> 	This function will create the bucket if it doesn't exist.
+<span class='line'> 83</span> 	
+<span class='line'> 84</span> 	&lt;p>&lt;code>bucketName&lt;/code> is optional.
+<span class='line'> 85</span> 	If you do not provide it, the name {@link S3#defaultBucketName} will be used.&lt;/p>
+<span class='line'> 86</span> 	
+<span class='line'> 87</span> 	&lt;p>&lt;code>key&lt;/code> is optional.
+<span class='line'> 88</span> 	If you do not provide it, the key will be a random string of characters
+<span class='line'> 89</span> 	with an .html extension.&lt;/p>
+<span class='line'> 90</span> 	
+<span class='line'> 91</span> 	&lt;p>If there is only 1 parameter, it will be interpreted as &lt;code>stringData&lt;/code>.&lt;/p>
+<span class='line'> 92</span>  */</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="NAME">S3.prototype.putObjectRaw</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">data</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">javaTurKit.mode</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">"offline"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="STRN">"Not allowed in offline mode."</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">	</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">data</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">bucketName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.putObjectRaw</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">bucketName</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">bucketName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">		</span><span class="NAME">bucketName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.defaultBucketName</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>103</span> </span><span class="WHIT">		</span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Packages.edu.mit.csail.uid.turkit.util.U.getRandomString</span><span class="PUNC">(</span><span class="NUMB">32</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"0123456789abcdefghijklmnopqrstuvwxyz"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">".html"</span><span class="WHIT">
+<span class='line'>104</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="WHIT">	</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="WHIT">	</span><span class="NAME">Packages.edu.mit.csail.uid.turkit.S3.putObject</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">		</span><span class="NAME">javaTurKit.awsAccessKeyID</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">javaTurKit.awsSecretAccessKey</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">		</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">data</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">		</span><span class="WHIT">
+<span class='line'>110</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">url</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getURL</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">	</span><span class="NAME">database.query</span><span class="PUNC">(</span><span class="STRN">"ensure(null, ['__S3_Objects', "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">json</span><span class="PUNC">(</span><span class="NAME">url</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"], "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">json</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">")"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">verbose</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">		</span><span class="NAME">print</span><span class="PUNC">(</span><span class="STRN">"S3 object put at: "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">url</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">		</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">url</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>118</span> 
+<span class='line'>119</span> </span><span class="COMM">/**
+<span class='line'>120</span>  * Calls {@link S3#putObjectRaw} inside of {@link TraceManager#once}.
+<span class='line'>121</span>  */</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="NAME">S3.prototype.putObject</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">s3Object</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">once</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>124</span> </span><span class="WHIT">				</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">s3.putObjectRaw</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">s3Object</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>125</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>127</span> 
+<span class='line'>128</span> </span><span class="COMM">/**
+<span class='line'>129</span> 	Create a public object in S3 based on a string.
+<span class='line'>130</span> 	Returns the URL for the object.
+<span class='line'>131</span> 	
+<span class='line'>132</span> 	&lt;p>&lt;code>bucketName&lt;/code> is optional.
+<span class='line'>133</span> 	If you do not provide it, the name {@link S3#defaultBucketName} will be used.&lt;/p>
+<span class='line'>134</span> 	
+<span class='line'>135</span> 	&lt;p>&lt;code>key&lt;/code> is optional.
+<span class='line'>136</span> 	If you do not provide it, the key will be a random string of characters
+<span class='line'>137</span> 	with an .html extension.&lt;/p>
+<span class='line'>138</span> 	
+<span class='line'>139</span> 	&lt;p>If there is only 1 parameter, it will be interpreted as &lt;code>stringData&lt;/code>.&lt;/p>
+<span class='line'>140</span>  */</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="NAME">S3.prototype.putStringRaw</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">stringData</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.putObjectRaw</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">stringData</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>144</span> 
+<span class='line'>145</span> </span><span class="COMM">/**
+<span class='line'>146</span>  * Calls {@link S3#putStringRaw} inside of {@link TraceManager#once}.
+<span class='line'>147</span>  */</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="NAME">S3.prototype.putString</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">stringData</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">once</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>150</span> </span><span class="WHIT">				</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">s3.putStringRaw</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">stringData</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>151</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>152</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>153</span> 
+<span class='line'>154</span> </span><span class="COMM">/**
+<span class='line'>155</span> 	Create a public object in S3 based on a file.
+<span class='line'>156</span> 	The name given to this object will be randomly generated.
+<span class='line'>157</span> 	Returns the URL for the object.
+<span class='line'>158</span> 	
+<span class='line'>159</span> 	&lt;p>&lt;code>bucketName&lt;/code> is optional.
+<span class='line'>160</span> 	If you do not provide it, the name {@link S3#defaultBucketName} will be used.&lt;/p>
+<span class='line'>161</span> 	
+<span class='line'>162</span> 	&lt;p>If there is only 1 parameter, it will be interpreted as &lt;code>file&lt;/code>.&lt;/p>
+<span class='line'>163</span>  */</span><span class="WHIT">
+<span class='line'>164</span> </span><span class="NAME">S3.prototype.putFileRaw</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">file</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>165</span> 
+<span class='line'>166</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">javaTurKit.mode</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">"offline"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="STRN">"Not allowed in offline mode."</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">	</span><span class="WHIT">
+<span class='line'>168</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">file</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">bucketName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">		</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.putFileRaw</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">bucketName</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>171</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">bucketName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>172</span> </span><span class="WHIT">		</span><span class="NAME">bucketName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.defaultBucketName</span><span class="WHIT">
+<span class='line'>173</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="WHIT">	</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">file</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">"string"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">		</span><span class="NAME">file</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">getFile</span><span class="PUNC">(</span><span class="NAME">file</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">	</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Packages.edu.mit.csail.uid.turkit.util.U.getRandomString</span><span class="PUNC">(</span><span class="NUMB">32</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"0123456789abcdefghijklmnopqrstuvwxyz"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>180</span> 
+<span class='line'>181</span> </span><span class="WHIT">	</span><span class="COMM">// add the original extension, if there was one</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">m</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">file.getName</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">match</span><span class="PUNC">(</span><span class="REGX">/\.([^\.]+)$/</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">	</span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">m</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'.'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">m</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">	</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.putObjectRaw</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">file</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>187</span> 
+<span class='line'>188</span> </span><span class="COMM">/**
+<span class='line'>189</span>  * Calls {@link S3#putFileRaw} inside of {@link TraceManager#once}.
+<span class='line'>190</span>  */</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="NAME">S3.prototype.putFile</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">file</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>192</span> </span><span class="WHIT">	</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">once</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">				</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">s3.putFileRaw</span><span class="PUNC">(</span><span class="NAME">bucketName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">file</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>194</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>195</span> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>196</span> 
+<span class='line'>197</span> </span><span class="COMM">/**
+<span class='line'>198</span>  * A reference to an {@link S3} object.
+<span class='line'>199</span>  * 
+<span class='line'>200</span>  * @return {S3}
+<span class='line'>201</span>  */</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="NAME">s3</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">S3</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>203</span> </span></pre></body></html>

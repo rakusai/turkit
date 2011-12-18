@@ -1,0 +1,2 @@
+
+mturk.deleteHITsRaw(mturk.getHITs())
