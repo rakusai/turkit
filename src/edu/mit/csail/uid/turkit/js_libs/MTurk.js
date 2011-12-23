@@ -112,6 +112,7 @@ MTurk.prototype.createHITRaw = function(params) {
 		"requesterAnnotation",
 		"keywords",
 		"qualificationRequirements",
+		"qualificationRequirement",
 	]))
 	if (badKeys.length > 0) {
 		throw new java.lang.Exception("some parameters to createHIT are not understood: " + badKeys.join(', '))
@@ -136,7 +137,6 @@ MTurk.prototype.createHITRaw = function(params) {
 		var temp = params.qualificationRequirements
 		var q = ensure(params, "qualificationRequirements", [])
 		q.push(temp);
-		
 	}
 
 	if (params.minApproval) {
@@ -188,8 +188,8 @@ MTurk.prototype.createHITRaw = function(params) {
 	if (!params.maxAssignments)
 		params.maxAssignments = 1
 
-//	if (!params.autoApprovalDelayInSeconds)
-//		params.autoApprovalDelayInSeconds = null
+	if (!params.autoApprovalDelayInSeconds)
+		params.autoApprovalDelayInSeconds = null
 
 	if (javaTurKit.safety) {
 		if (params.hitTypeId) {
@@ -199,8 +199,11 @@ MTurk.prototype.createHITRaw = function(params) {
 		}
 	}
 
-//	if (!params.requesterAnnotation)
-//		params.requesterAnnotation = null
+	if (!params.requesterAnnotation)
+		params.requesterAnnotation = null
+
+	if (!params.keywords)
+		params.keywords = null
 
 //	if (!params.responseGroup)
 //		params.responseGroup = null
@@ -214,26 +217,20 @@ MTurk.prototype.createHITRaw = function(params) {
 			"Question", params.question,
 			"AssignmentDurationInSeconds", params.assignmentDurationInSeconds,
 			"LifetimeInSeconds", params.lifetimeInSeconds,
-			"MaxAssignments", params.maxAssignments
-//			"Keywords", params.keywords,
-//			"AutoApprovalDelayInSeconds", params.autoApprovalDelayInSeconds,
-//			"RequesterAnnotation", params.requesterAnnotation
+			"MaxAssignments", params.maxAssignments,
+			"Keywords", params.keywords,
+			"AutoApprovalDelayInSeconds",params.autoApprovalDelayInSeconds,
+			"RequesterAnnotation", params.requesterAnnotation
 	)
 	XMLstring = XMLstring + XMLstringFromObjs({"Amount": ""+params.reward, "CurrencyCode":"USD"},"Reward")
 	
-	if (params.keywords)
-        XMLstring = XMLstring + XMLstringFromObjs(params.keywords,"Keywords")
-
-	if (params.AutoApprovalDelayInSeconds)
-        XMLstring = XMLstring + XMLstringFromObjs(params.AutoApprovalDelayInSeconds,"AutoApprovalDelayInSeconds")
-
-	if (params.requesterAnnotation)
-        XMLstring = XMLstring + XMLstringFromObjs(params.requesterAnnotation,"RequesterAnnotation")
-
 	//add qualification requirements
-	
-	XMLstring = XMLstring + (params.qualificationRequirements ? XMLstringFromObjs(params.qualificationRequirements, "QualificationRequirement") : "")
-	
+	if (params.qualificationRequirement){
+		if(typeOf(params.qualificationRequirement) == "object")
+			XMLstring = XMLstring + XMLstringFromObjs(params.qualificationRequirement, "QualificationRequirement")
+		else
+ 	       XMLstring = XMLstring + "<QualificationRequirement>" + params.qualificationRequirement + "</QualificationRequirement>"
+	}
 	var res = javaTurKit.soapRequest("CreateHIT", XMLstring)
 	var x = new XML(res)
 	
@@ -265,7 +262,8 @@ var XMLtags = function(paramsList){
     
 		var x = ""	
 		for (var i = 0; i < arguments.length; i += 2) {
-			x= x+ XMLtag(arguments[i], arguments[i + 1]);
+			if (arguments[i + 1] != null)
+				x= x+ XMLtag(arguments[i], arguments[i + 1]);
 		}
 		return x	
 }
