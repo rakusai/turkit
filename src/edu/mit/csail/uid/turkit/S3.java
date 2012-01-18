@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,11 +35,11 @@ public class S3 {
 	 * A date formatter for dates in our HTTP requests.
 	 */
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat(
-			"EEE, d MMM yyyy HH:mm:ss Z");
+			"EEE, d MMM yyyy HH:mm:ss Z",Locale.US);
 
-	static {
-		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-	}
+//	static {
+//		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+//	}
 
 	/**
 	 * Gets the current time formatted with our date formatter.
